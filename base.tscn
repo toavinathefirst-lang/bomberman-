@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://prefab/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tile/grassTile.tres" type="TileSet" id=2]
+[ext_resource path="res://prefab/enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://base.gd" type="Script" id=4]
+
+[node name="base" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="grass_Tile" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+format = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -3, 639, -61, 640, -62, -64, 1088, -61, 1086, 204, 1084, 637, 1027, 637, 1024, -6, -6, -2 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -35, 597, -38, 638, 1040, 640, 1044, 596, 495, 600 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 165, 163 )
+
+[node name="enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 613, 225 )
