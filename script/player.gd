@@ -6,7 +6,9 @@ var canMove= true
 onready var tw:Tween=  $tw
 onready var colladerRight = $RayRight
 onready var animator:AnimationPlayer = $animator
-# Called when the node enters the scene tree for the first time.
+onready var bombe = preload("res://prefab/bombe.tscn")
+
+var tickBomb = false
 func _ready():
 	pass # Replace with function body.
 
@@ -29,14 +31,23 @@ func _process(delta):
 		animator.play("up")
 	else:
 		animator.play("idle")
-	movement(vel)
-	
-func movement(vec):
+	if vel != Vector2(0,0) : action(vel)
+	if Input.is_action_just_pressed("ui_accept"):
+		tickBomb =true;
+func action(vec):
 	if canMove == true :
+		if tickBomb ==true :
+			var b=bombe.instance()
+			get_parent().add_child(b)
+			b.planted(self.position)
+			tickBomb=false
+		if(vec==Vector2(0,0)):
+			return
+		print(vec)
 		canMove=false
 		var oldpos= position
 		var newpos=Vector2(oldpos.x  + (vec.x*64),oldpos.y + (vec.y*64))
-		tw.interpolate_property(self,"position",oldpos,newpos,0.4,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+		tw.interpolate_property(self,"position",oldpos,newpos,0.3,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 		tw.start()
 		yield(tw,"tween_completed")
 		canMove =  true 
