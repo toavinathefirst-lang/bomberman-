@@ -46,3 +46,10 @@ func movement(vec):
 func monRandom(number:int)->int:
 	return randi()%number
 	pass
+	
+	
+
+
+func _on_hitbox_body_entered(body):
+	queue_free()
+	pass # Replace with function body.

@@ -51,3 +51,8 @@ func action(vec):
 		tw.start()
 		yield(tw,"tween_completed")
 		canMove =  true 
+
+
+func _on_hitbox_body_entered(body):
+	print("HIT: "+str(body.name))
+	pass # Replace with function body.

@@ -85,6 +85,8 @@ tracks/0/keys = {
 }
 
 [node name="enemy" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="player_spr" type="Sprite" parent="."]
@@ -100,21 +102,33 @@ shape = SubResource( 1 )
 
 [node name="RayDown" type="RayCast2D" parent="."]
 enabled = true
+collision_mask = 18
 
 [node name="RayUp" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, -50 )
+collision_mask = 18
 
 [node name="RayLeft" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( -50, 0 )
+collision_mask = 18
 
 [node name="RayRight" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 50, 0 )
+collision_mask = 18
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/blue = SubResource( 5 )
 anims/orange = SubResource( 6 )
 anims/purple = SubResource( 4 )
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
