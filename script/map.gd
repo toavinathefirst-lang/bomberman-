@@ -5,7 +5,7 @@ onready var player = preload("res://prefab/player.tscn")
 onready var enemy = preload("res://prefab/enemy.tscn")
 onready var explosion = $explosion
 
-export(int) var force = 2
+export(int) var force = 1
 
 func _ready():
 	spawn(10)
