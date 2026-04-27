@@ -43,7 +43,7 @@ func action(vec):
 			tickBomb=false
 		if(vec==Vector2(0,0)):
 			return
-		print(vec)
+	
 		canMove=false
 		var oldpos= position
 		var newpos=Vector2(oldpos.x  + (vec.x*64),oldpos.y + (vec.y*64))
