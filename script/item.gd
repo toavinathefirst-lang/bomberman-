@@ -8,7 +8,9 @@ signal loot(valeur)
 func start(pos):
 	if spr == null:
 		spr = get_node("spr")
-	self.position = pos  # ← seul changement ici
+	self.position = pos
+	print("item position: " + str(self.position))
+	print("item global_position: " + str(self.global_position)) # ← seul changement ici
 	var r = randi() % 100
 	if r >= 35:
 		return false

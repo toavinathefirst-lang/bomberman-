@@ -65,5 +65,4 @@ func action(vec):
 
 
 func _on_hitbox_body_entered(body):
-	print("HIT: "+str(body.name))
 	pass # Replace with function body.

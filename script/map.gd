@@ -105,4 +105,17 @@ func explode(post:Vector2):
 	for t in lst_explo:
 		explosion.set_cellv(t, -1)
 	for b in lst_fond:
-		 fond.set_cellv(b,2)
+		fond.set_cellv(b, 2)
+		var world_pos = fond.map_to_world(b)
+		print(b)
+		print(world_pos)
+		var i = item.instance()
+		add_child(i)
+		var spawned = i.start(Vector2(world_pos.x + 32, world_pos.y + 32))
+		if not spawned:
+			i.queue_free()
+		else:
+			print("voulu: " + str(Vector2(world_pos.x + 32, world_pos.y + 32)))
+			print("reel position: " + str(i.position))
+			print("reel global_position: " + str(i.global_position))
+
