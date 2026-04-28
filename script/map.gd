@@ -3,12 +3,13 @@ extends Node2D
 onready var fond:TileMap = $fond
 onready var player = preload("res://prefab/player.tscn")
 onready var enemy = preload("res://prefab/enemy.tscn")
+onready var item =preload("res://prefab/item.tscn")
 onready var explosion = $explosion
 
 export(int) var force = 1
 
 func _ready():
-	spawn(10)
+	spawn(20)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):

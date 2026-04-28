@@ -1,34 +1,29 @@
 extends Area2D
-
+onready var spr = $spr
 var angle = 0
 # Export d'enum standard Godot 3
-enum type_item {RUBIS, COEUR, CLE, BOMBE}
-export(type_item) var item_type
-
+var type
 signal loot(valeur)
 
-func start(pos, type):
-	self.position = pos
-	item_type = type
-	
-	# PAUSE : On attend que le noeud soit dans l'arbre (ready) 
-	# pour éviter l'erreur "null instance" sur $spr
-	if not is_inside_tree():
-		yield(self, "ready")
-	
-	# Initialisation de la couleur selon le type
-	match item_type:
-		type_item.RUBIS:
-			$spr.modulate = Color(0, 1, 0)
-		type_item.COEUR:
-			$spr.modulate = Color(1, 0, 0)
-		type_item.CLE:
-			$spr.modulate = Color(0, 0, 1)
-		type_item.BOMBE:
-			$spr.modulate = Color(0, 0, 0)
-
+func start(pos):
+	if spr == null:
+		spr = get_node("spr")
+	self.position = pos  # ← seul changement ici
+	var r = randi() % 100
+	if r >= 35:
+		return false
+	else:
+		if r >= 0 && r < 10:
+			spr.frame = 48
+		if r >= 10 && r < 20:
+			spr.frame = 49
+		if r >= 20 && r < 30:
+			spr.frame = 50
+		if r >= 30 && r < 35:
+			spr.frame = 51
+		return true
 func _on_item_body_entered(body):
 	print("touché")
 	# En Godot 3, self.emit_signal ou emit_signal fonctionnent pareil
-	emit_signal("loot", item_type)
+	emit_signal("loot", type)
 	queue_free()
