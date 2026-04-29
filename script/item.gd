@@ -1,8 +1,8 @@
 extends Area2D
 onready var spr = $spr
 var angle = 0
-enum TypeItem{fire=0 ,bombe=1,speed=3,heart=4}
-var itemTaken:int
+
+var itemTaken
 # Export d'enum standard Godot 3
 
 signal loot(valeur)
@@ -19,19 +19,18 @@ func start(pos):
 	else:
 		if r >= 0 && r < 10:
 			spr.frame = 48
-			itemTaken=TypeItem.fire
+			itemTaken=GLOBAL.ITEMS.BOOST
 		if r >= 10 && r < 20:
 			spr.frame = 49
-			itemTaken=TypeItem.bombe
+			itemTaken=GLOBAL.ITEMS.BOMB
 		if r >= 20 && r < 30:
 			spr.frame = 50
-			itemTaken=TypeItem.speed
+			itemTaken=GLOBAL.ITEMS.SPEED
 		if r >= 30 && r < 35:
 			spr.frame = 51
-			itemTaken=TypeItem.heart
+			itemTaken=GLOBAL.ITEMS.HEART
 		return true
-
-
+		
 func _on_item_area_entered(area):
 	if(area.get_parent().name=="player"):
 		self.emit_signal("loot",itemTaken)

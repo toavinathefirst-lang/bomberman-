@@ -14,6 +14,10 @@ config/name="Bomberman"
 run/main_scene="res://map/map0.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GLOBAL="*res://global.gd"
+
 [display]
 
 window/size/height=640
@@ -29,6 +33,7 @@ common/drop_mouse_on_gui_input_disabled=true
 2d_physics/layer_3="enemys"
 2d_physics/layer_4="explo"
 2d_physics/layer_5="bomb"
+2d_physics/layer_6="item"
 
 [mono]
 

@@ -9,7 +9,7 @@ radius = 16.1555
 
 [node name="item" type="Area2D"]
 position = Vector2( 66, 60 )
-collision_layer = 0
+collision_layer = 32
 script = ExtResource( 2 )
 
 [node name="shadow" type="Sprite" parent="."]

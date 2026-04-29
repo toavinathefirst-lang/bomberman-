@@ -43,7 +43,7 @@ func action(vec):
 		# --- LA CORRECTION ICI ---
 		# On force le Raycast à se mettre à jour vers la destination
 		# Ou plus simple : on vérifie si la destination est un mur
-		if tickBomb == true:
+		if tickBomb == true :
 			var b = bombe.instance()
 			get_parent().add_child(b)
 			b.planted(self.position)

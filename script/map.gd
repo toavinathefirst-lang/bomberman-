@@ -5,8 +5,7 @@ onready var player = preload("res://prefab/player.tscn")
 onready var enemy = preload("res://prefab/enemy.tscn")
 onready var item =preload("res://prefab/item.tscn")
 onready var explosion = $explosion
-
-export(int) var force = 1
+var force = 1
 
 func _ready():
 	spawn(20)
@@ -113,7 +112,7 @@ func explode(post:Vector2):
 		print(world_pos)
 		var i = item.instance()
 		add_child(i)
-		i.connect("loot", self, "recup_loot") # Connexion directe et sûre
+		i.connect("loot", GLOBAL, "item_loot") # Connexion directe et sûre
 		var spawned = i.start(Vector2(world_pos.x + 32, world_pos.y + 32))
 		if not spawned:
 			i.queue_free()
