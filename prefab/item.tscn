@@ -9,6 +9,7 @@ radius = 16.1555
 
 [node name="item" type="Area2D"]
 position = Vector2( 66, 60 )
+collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="shadow" type="Sprite" parent="."]
@@ -30,4 +31,4 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[connection signal="body_entered" from="." to="." method="_on_item_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_item_area_entered"]

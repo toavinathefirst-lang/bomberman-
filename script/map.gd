@@ -36,6 +36,8 @@ func spawn(nombre:int):
 	# CORRECTION : Utilisation du point (0.1) au lieu de la virgule (0,1)
 	yield(get_tree().create_timer(0.1), "timeout")
 	creation_player_and_mob(nombre)
+func recup_loot(value):
+	print("j ai recupere l item"+str(value))
 
 func creation_player_and_mob(nombre:int):
 	var tileGrassList = fond.get_used_cells_by_id(2)
@@ -111,6 +113,7 @@ func explode(post:Vector2):
 		print(world_pos)
 		var i = item.instance()
 		add_child(i)
+		i.connect("loot", self, "recup_loot") # Connexion directe et sûre
 		var spawned = i.start(Vector2(world_pos.x + 32, world_pos.y + 32))
 		if not spawned:
 			i.queue_free()
